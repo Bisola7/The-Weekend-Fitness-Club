@@ -3,8 +3,8 @@ import java.util.ArrayList;
 public class Customer {
     private String name;
     private String email;
-    private String phoneNumber;
-    private ArrayList<Booking> bookings;
+    private Integer phoneNumber;
+    private ArrayList<Lesson> lessons;
 
     public String getName() {
         return name;
@@ -22,30 +22,48 @@ public class Customer {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
+    public Integer getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(Integer phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public ArrayList<Booking> getBookings() {
-        return bookings;
+    public ArrayList<Lesson> getBookings() {
+        return lessons;
     }
 
-    public void setBookings(ArrayList<Booking> bookings) {
-        this.bookings = bookings;
+    public void setBookings(ArrayList<Lesson> lessons) {
+        this.lessons = lessons;
     }
 // other fields and methods as required
 
-    public Customer(String name, String email, String phoneNumber) {
+    public Customer(String name, String email, Integer phoneNumber) {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.bookings = new ArrayList<Booking>();
+        this.lessons = new ArrayList<Lesson>();
     }
-    public void addBooking(Booking booking) {
-        this.bookings.add(booking);
+    public boolean addLesson(Lesson lesson) {
+        try{
+            this.lessons.add(lesson);
+            return true;
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+
+    }
+
+    public boolean removeLesson(Lesson lesson){
+        try{
+            this.lessons.remove(lesson);
+            return true;
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+
     }
 }

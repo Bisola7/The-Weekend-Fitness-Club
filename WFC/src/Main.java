@@ -1,7 +1,7 @@
 import java.util.*;
 public class Main {
     public static final Scanner input = new Scanner(System.in);
-    Customer customer = new Customer();
+
     public void main(String[]args){
         System.out.println("Welcome to The Weekend Fitness Club!");
         System.out.println("Please enter your phone number");
