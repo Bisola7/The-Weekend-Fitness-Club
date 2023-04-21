@@ -3,7 +3,7 @@ import java.util.HashMap;
 
 public class FitnessType {
     private String name;
-    private float price;
+    private int price;
     private HashMap<Integer, ArrayList<Lesson>> lessonAvailable;
 
     public String getName() {
@@ -14,11 +14,11 @@ public class FitnessType {
         this.name = name;
     }
 
-    public float getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -30,7 +30,7 @@ public class FitnessType {
         this.lessonAvailable = fitnessAvailable;
     }
 
-    public FitnessType(String name, float price) {
+    public FitnessType(String name, int price) {
         this.name = name;
         this.price = price;
         this.lessonAvailable = new HashMap<Integer, ArrayList<Lesson>>();
