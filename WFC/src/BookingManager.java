@@ -15,6 +15,7 @@ public class BookingManager {
             String bookingId = generateBookingId();
             Booking booking = new Booking(customer, lesson, bookingId);
             bookings.add(booking);
+            customer.addBooking(booking);
             lesson.addCapacity();
             return bookingId;
     }
@@ -76,4 +77,5 @@ public class BookingManager {
 
         return sb.toString();
     }
+
 }

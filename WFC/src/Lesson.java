@@ -4,7 +4,8 @@ public class Lesson {
 
     public final static int CAPACITY = 5;
     private int month;
-    private int day;
+    private int week;
+    private String day;
     private int session;
     private int attendance;
     private int currentCapacity;
@@ -38,8 +39,17 @@ public class Lesson {
 
     private FitnessType fitnessType;
 
-    public Lesson(int month, int day, int session, FitnessType fitnessType) {
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
+    }
+
+    public Lesson(int month, int week, String day, int session, FitnessType fitnessType) {
         this.month = month;
+        this.week = week;
         this.day = day;
         this.session = session;
         this.fitnessType = fitnessType;
@@ -65,12 +75,12 @@ public class Lesson {
         this.month = month;
     }
 
-    public int getDay() {
-        return day;
+    public int getWeek() {
+        return week;
     }
 
-    public void setDay(int day) {
-        this.day = day;
+    public void setDay(int week) {
+        this.week = week;
     }
 
     public int getSession() {
@@ -116,5 +126,9 @@ public class Lesson {
     }
     public void customerReview(Review addReview){
         customerReview.add(addReview);
+    }
+    public String changeLessonToString(){
+        return month+ " " + week + " " + day + " " + session + " " + fitnessType.getName() + " " + fitnessType.getPrice();
+
     }
 }

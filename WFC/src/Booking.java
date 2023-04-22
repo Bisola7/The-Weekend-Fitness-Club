@@ -44,5 +44,9 @@ public class Booking {
         this.lesson = lesson;
         this.bookingID = bookingID;
     }
+    public String changeBookingToString(){
+        return lesson.changeLessonToString();
+
+    }
     // getters and setters for fields
 }

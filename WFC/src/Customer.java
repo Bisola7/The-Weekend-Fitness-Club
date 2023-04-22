@@ -1,10 +1,12 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Customer {
     private String name;
     private String email;
-    private Integer phoneNumber;
+    private String phoneNumber;
     private ArrayList<Lesson> lessons;
+    private HashMap<String, Booking> booked;
 
     public String getName() {
         return name;
@@ -22,28 +24,45 @@ public class Customer {
         this.email = email;
     }
 
-    public Integer getPhoneNumber() {
+    public ArrayList<Lesson> getLessons() {
+        return lessons;
+    }
+
+    public void setLessons(ArrayList<Lesson> lessons) {
+        this.lessons = lessons;
+    }
+
+    public HashMap<String, Booking> getBooked() {
+        return booked;
+    }
+
+    public void setBooked(HashMap<String, Booking> booked) {
+        this.booked = booked;
+    }
+
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public ArrayList<Lesson> getBookings() {
-        return lessons;
-    }
 
     public void setBookings(ArrayList<Lesson> lessons) {
         this.lessons = lessons;
     }
 // other fields and methods as required
 
-    public Customer(String name, String email, Integer phoneNumber) {
+    public Customer(String name, String email, String phoneNumber) {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.lessons = new ArrayList<Lesson>();
+        this.booked = new HashMap<String, Booking>();
+    }
+    public void addBooking(Booking booking){
+        this.booked.put(booking.getBookingID(), booking);
     }
     public boolean addLesson(Lesson lesson) {
         try{
