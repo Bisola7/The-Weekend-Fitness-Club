@@ -18,11 +18,9 @@ public class CustomerManager {
 
     public boolean addCustomer(Customer customer) {
         if (customers.containsKey(customer.getPhoneNumber())) {
-            System.out.println("Customer with phone number " + customer.getPhoneNumber() + " already exists");
             return false;
         } else {
             customers.put(customer.getPhoneNumber(), customer);
-            System.out.println("Customer with phone number " + customer.getPhoneNumber() + " has been added");
             return true;
         }
     }
