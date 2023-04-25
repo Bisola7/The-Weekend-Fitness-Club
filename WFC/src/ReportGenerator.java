@@ -29,14 +29,14 @@ public class ReportGenerator {
             }
         }
 
-        report += "The Fitness Type with the highest earning is: " + champion.getName() + " earning: GBP" + champion.getTotalEarningByMonth(month) + "\n Earning for other types are:\n ";
+        report += "The Fitness Type with the highest earning is: " + champion.getName() + " earning: £" + champion.getTotalEarningByMonth(month) + "\n Earning for other types are:\n";
 
         for (FitnessType type : allFitnessTypes){
-            if (type.getTotalEarningByMonth(month) > champion.getTotalEarningByMonth(month)){
+            //if (type.getTotalEarningByMonth(month) > champion.getTotalEarningByMonth(month)){
                 if(!type.equals(champion)){
-                    report += type.getName() + ": GBP" + type.getPrice() + "\n";
+                    report += type.getName() + ": GBP" + type.getTotalEarningByMonth(month) + "\n";
                 }
-            }
+            //}
         }
 
         return report;

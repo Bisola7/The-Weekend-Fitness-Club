@@ -9,10 +9,6 @@ public class Timetable {
         return allLessons.get(month);
     }
 
-    public void setAllFitnessTypes(ArrayList<FitnessType> allFitnessTypes) {
-        this.allFitnessTypes = allFitnessTypes;
-    }
-
     private HashMap<Integer, ArrayList<Lesson>> allLessons = new HashMap<Integer, ArrayList<Lesson>>();
 
 
@@ -67,8 +63,8 @@ public class Timetable {
         this.createLesson(2, 3,"sunday", 2,rockClimbingClass);
         this.createLesson(2, 4, "saturday", 1,yogaClass);
         this.createLesson(2, 4, "saturday", 2,swimmingClass);
-        this.createLesson(3, 4, "sunday", 1,pilateClass);
-        this.createLesson(3, 4,"sunday", 2,rockClimbingClass);
+        this.createLesson(2, 4, "sunday", 1,pilateClass);
+        this.createLesson(2, 4,"sunday", 2,rockClimbingClass);
 
         this.allFitnessTypes.add(yogaClass);
         this.allFitnessTypes.add(swimmingClass);
@@ -93,6 +89,7 @@ public class Timetable {
 
         allLessons.putIfAbsent(month, new ArrayList<Lesson>());
         allLessons.get(month).add(lesson);
+        fitnessType.addLesson(lesson);
     }
 
 }

@@ -1,9 +1,9 @@
 import java.util.*;
 
-public class BookingManager {
+public class BookingHandler {
     private ArrayList<Booking> bookings;
 
-    public BookingManager() {
+    public BookingHandler() {
         this.bookings = new ArrayList<Booking>();
     }
 
@@ -58,6 +58,7 @@ public class BookingManager {
             Lesson lesson = booking.getLesson();
             customer.removeLesson(lesson);
             lesson.reduceCapacity();
+            lesson.increaseAttendance();
             booking.setStatus("attended");
             booking.getLesson().customerReview(rating);
             return true;

@@ -1,9 +1,9 @@
 import java.util.HashMap;
 
-public class CustomerManager {
+public class CustomerHandler {
     private HashMap<String, Customer> customers;
 
-    public CustomerManager() {
+    public CustomerHandler() {
         this.customers = new HashMap<String, Customer>();
     }
 

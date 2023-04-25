@@ -9,7 +9,6 @@ public class Lesson {
     private int session;
     private int attendance;
     private int currentCapacity;
-    private float averageRating;
     private boolean isFilled;
     private ArrayList<Review> customerReview;
 
@@ -29,12 +28,16 @@ public class Lesson {
         this.currentCapacity = currentCapacity;
     }
 
-    public float getAverageRating() {
-        return averageRating;
-    }
-
-    public void setAverageRating(float averageRating) {
-        this.averageRating = averageRating;
+    public double getAverageRating() {
+        double sum = 0;
+        for (Review review : this.customerReview){
+            sum += review.getRating();
+        }
+        if (sum == 0){
+            return  0;
+        } else {
+            return sum/this.customerReview.size();
+        }
     }
 
     private FitnessType fitnessType;
@@ -107,6 +110,9 @@ public class Lesson {
     public void setFitnessType(FitnessType fitnessType) {
         this.fitnessType = fitnessType;
     }
+    public void increaseAttendance() {
+        this.attendance +=1;
+    }
 
     public void addCapacity(){
         this.currentCapacity += 1;
@@ -129,7 +135,7 @@ public class Lesson {
         customerReview.add(addReview);
     }
     public String changeLessonToString(){
-        return "Month: " + month + " Week: " + week + " " + day + " Session: " + session + " " + fitnessType.getName() + " Price: £" + fitnessType.getPrice();
+        return "Month: " + month + " Week: " + week + " Day: " + day + " Session: " + session + " Fitness Type: " + fitnessType.getName() + " Price: £" + fitnessType.getPrice();
 
     }
 }
