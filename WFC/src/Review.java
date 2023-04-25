@@ -18,13 +18,12 @@ public class Review {
         this.message = message;
     }
 
-    public Review(int rating, String message) {
-        this.rating = rating;
-        this.message = message;
-    }
-
     public Review(int rating) {
         this.rating = rating;
         this.message = "";
+    }
+    public Review(int rating, String message) {
+        this.rating = rating;
+        this.message = message;
     }
 }

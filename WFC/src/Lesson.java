@@ -53,6 +53,7 @@ public class Lesson {
         this.day = day;
         this.session = session;
         this.fitnessType = fitnessType;
+        this.customerReview = new ArrayList<Review>();
     }
 
     public ArrayList<Review> getCustomerReview() {
@@ -128,7 +129,7 @@ public class Lesson {
         customerReview.add(addReview);
     }
     public String changeLessonToString(){
-        return month+ " " + week + " " + day + " " + session + " " + fitnessType.getName() + " " + fitnessType.getPrice();
+        return "Month: " + month + " Week: " + week + " " + day + " Session: " + session + " " + fitnessType.getName() + " Price: £" + fitnessType.getPrice();
 
     }
 }

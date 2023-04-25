@@ -40,6 +40,18 @@ public class FitnessType {
         ArrayList<Lesson> currentMonthArrayList = this.lessonAvailable.get(lesson.getMonth());
         currentMonthArrayList.add(lesson);
     }
+    public ArrayList<Lesson> lessonByMonth(int month){
+        return lessonAvailable.get(month);
+    }
 
+    public int getTotalEarningByMonth(int month){
+        ArrayList<Lesson> lessons = this.lessonAvailable.get(month);
+        int total = 0;
+        for (Lesson lesson : lessons){
+            total += lesson.getAttendance() * this.price;
+        }
+
+        return  total;
+    }
 
 }

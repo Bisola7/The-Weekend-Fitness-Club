@@ -17,6 +17,7 @@ public class BookingManager {
             bookings.add(booking);
             customer.addBooking(booking);
             lesson.addCapacity();
+            customer.addLesson(lesson);
             return bookingId;
     }
 
@@ -43,6 +44,7 @@ public class BookingManager {
             booking.setStatus("changed");
             customer.addLesson(newLesson);
             newLesson.addCapacity();
+            booking.setLesson(newLesson);
             return true;
         } catch (Exception e){
             System.out.println(e.getMessage());

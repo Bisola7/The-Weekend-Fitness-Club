@@ -8,7 +8,6 @@ public class CustomerManager {
     }
 
     public Customer getCustomer(String email) {
-        //if (customers.containsKey(phoneNumber)) {
         if (customers.containsKey(email)) {
             return customers.get(email);
         } else {

@@ -43,6 +43,7 @@ public class Booking {
         this.customer = customer;
         this.lesson = lesson;
         this.bookingID = bookingID;
+        this.status = "unattended";
     }
     public String changeBookingToString(){
         return lesson.changeLessonToString();
