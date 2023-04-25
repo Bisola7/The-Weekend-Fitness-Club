@@ -4,7 +4,7 @@ import java.util.HashMap;
 public class Customer {
     private String name;
     private String email;
-    private String phoneNumber;
+    //private String phoneNumber;
     private ArrayList<Lesson> lessons;
     private HashMap<String, Booking> booked;
 
@@ -40,13 +40,13 @@ public class Customer {
         this.booked = booked;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+//    public String getPhoneNumber() {
+//        return phoneNumber;
+//    }
+//
+//    public void setPhoneNumber(String phoneNumber) {
+//        this.phoneNumber = phoneNumber;
+//    }
 
 
     public void setBookings(ArrayList<Lesson> lessons) {
@@ -54,10 +54,10 @@ public class Customer {
     }
 // other fields and methods as required
 
-    public Customer(String name, String email, String phoneNumber) {
+    public Customer(String name, String email) {
         this.name = name;
         this.email = email;
-        this.phoneNumber = phoneNumber;
+        //this.phoneNumber = phoneNumber;
         this.lessons = new ArrayList<Lesson>();
         this.booked = new HashMap<String, Booking>();
     }

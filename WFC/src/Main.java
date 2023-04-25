@@ -17,34 +17,50 @@ public class Main {
             System.out.println("BookingID=" + key + ", Lesson=" + value);
         });
     }
+    public static boolean emailValidation(String email){
+        String validateEmail = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        return email.matches(validateEmail);
+    }
     public static void registerCustomer(){
         System.out.println("What is your first name?");
         String firstName = input.next();
         System.out.println("What is your last name?");
         String lastName = input.next();
         String name = firstName + " " + lastName;
-        System.out.println("What is your email?");
-        String email = input.next();
-        System.out.println("What is your phone?");
-        String phone = input.next();
-        Customer newCustomer = new Customer(name, email, phone);
+        String email = "";
+        boolean validation = true;
+        while (validation){
+            System.out.println("What is your email?");
+            email = input.next();
+            if (emailValidation(email)){
+                validation = false;
+            } else {
+                System.out.println("Invalid email address");
+            }
+        }
+
+//        System.out.println("What is your phone?");
+//        String phone = input.next();
+        Customer newCustomer = new Customer(name, email);
         boolean successful = customerManager.addCustomer(newCustomer);
         if (successful){
             currentCustomer = newCustomer;
-            System.out.println("Registration successful. Your phone number will be your login");
+            System.out.println("Registration successful. Your email will be your login");
         } else {
-            System.out.println("The phone number already exists. Please sign in");
+            System.out.println("The email address already exists. Please sign in");
             signIn();
         }
     }
     //add while
     public static Lesson selectLesson (){
         ArrayList<Lesson> lessons;
-        System.out.println("by day or fitness");
-        System.out.println("select 1 or 2");
+        System.out.println("Please select an option:");
+        System.out.println("Enter 1 to view lesson timetable by day (Saturday or Sunday");
+        System.out.println("Enter 2 to view lesson timetable by fitness class (e.g YOGA, ZUMBA)");
         String answer = input.next();
         if (answer.equals("1")){
-            System.out.println("sat or sun?");
+            System.out.println("Please enter 1 to view lessons that take place on saturdays");
+            System.out.println("Please enter 2 to view lessons that take place on sundays");
             String dayType = input.next();
             if (dayType.equals("1")) {
                 lessons = timeTable.getByDay("saturday");
@@ -85,8 +101,9 @@ public class Main {
 
     private static void bookALesson(){
         Lesson lesson = selectLesson();
-        String bookingID = bookingManager.registerNewBooking(currentCustomer, lesson);
-        System.out.println(bookingID);
+         String bookingID = bookingManager.registerNewBooking(currentCustomer, lesson);
+         System.out.println("This is your bookingID: " + bookingID);
+        customerActivities();
     }
 
     private static void cancelABooking(){
@@ -99,7 +116,9 @@ public class Main {
             cancelABooking();
         } else {
             bookingManager.cancelBooking(booking);
+            System.out.println("You have successfully cancelled the booking with booking ID: " +bookingID);
         }
+        customerActivities();
     }
 
     private static void changeABooking(){
@@ -107,26 +126,35 @@ public class Main {
         System.out.println("Please enter the booking ID of the booking you want to change from");
         String bookingID = input.next();
         Booking booking = currentCustomer.getBooked().get(bookingID);
-        System.out.println("Please select the lesson you want to change to");
-        Lesson lesson = selectLesson();
-        bookingManager.changeBooking(booking, lesson);
+        if (booking == null){
+            System.out.println("The booking ID entered does not exist. Please ensure to type in the correct booking ID");
+            cancelABooking();
+        } else {
+            System.out.println("Please select the lesson you want to change to");
+            Lesson lesson = selectLesson();
+            bookingManager.changeBooking(booking, lesson);
+        }
+        customerActivities();
     }
     private static void attendABooking(){
         showBookings(currentCustomer.getBooked());
-        System.out.println("enter booking id exactly as shown to attend the booking");
+        System.out.println("Please enter the booking ID of the lesson you want to attend");
         String bookingID = input.next();
         Booking booking = currentCustomer.getBooked().get(bookingID);
         if (booking == null) {
             System.out.println("The booking ID entered does not exist. Please ensure to type in the correct booking ID");
             attendABooking();
         } else {
-            System.out.println("Please enter 1 to only rate a lesson and enter 2 to rate and review a lesson");
+            System.out.println("Thank you for attending the lesson, please select an option:");
+            System.out.println("Enter 1 to only rate a lesson");
+            System.out.println("Enter 2 to rate and review a lesson");
             String choice = input.next();
             if (choice.equals("1")){
                 System.out.println("Please enter a number (1-5) where 1: Very dissatisfied, 2: Dissatisfied, 3: Ok, 4: Satisfied, 5: Very Satisfied");
                 int number = input.nextInt();
                 Review rating = new Review(number);
                 bookingManager.attendLesson(booking, rating);
+                System.out.println("Thank you! Your rating has been recorded");
             } else if (choice.equals("2")) {
                 System.out.println("Please enter a number (1-5) where 1: Very dissatisfied, 2: Dissatisfied, 3: Ok, 4: Satisfied, 5: Very Satisfied");
                 int rating = input.nextInt();
@@ -134,13 +162,15 @@ public class Main {
                 String message = input.next();
                 Review review = new Review(rating, message);
                 bookingManager.attendLesson(booking, review);
+                System.out.println("Thank you! Your review has been recorded");
             }
         }
+        customerActivities();
     }
     private static void signIn(){
-        System.out.println("enter phone");
-        String phone = input.next();
-        currentCustomer = customerManager.getCustomer(phone);
+        System.out.println("Please enter your email address");
+        String email = input.next();
+        currentCustomer = customerManager.getCustomer(email);
         if (currentCustomer == null){
             signIn();
         }
@@ -238,7 +268,8 @@ public class Main {
         timeTable.createLesson(3, 4, "sunday", 1,pilateClass);
         timeTable.createLesson(3, 4,"sunday", 2,rockClimbingClass);
 
-        launchApp();
+        //launchApp();
+        registerCustomer();
     }
 
 }

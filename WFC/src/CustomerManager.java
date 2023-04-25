@@ -7,20 +7,20 @@ public class CustomerManager {
         this.customers = new HashMap<String, Customer>();
     }
 
-    public Customer getCustomer(String phoneNumber) {
-        if (customers.containsKey(phoneNumber)) {
-            return customers.get(phoneNumber);
+    public Customer getCustomer(String email) {
+        //if (customers.containsKey(phoneNumber)) {
+        if (customers.containsKey(email)) {
+            return customers.get(email);
         } else {
-            System.out.println("Customer with phone number " + phoneNumber + " does not exist");
             return null;
         }
     }
 
     public boolean addCustomer(Customer customer) {
-        if (customers.containsKey(customer.getPhoneNumber())) {
+        if (customers.containsKey(customer.getEmail())) {
             return false;
         } else {
-            customers.put(customer.getPhoneNumber(), customer);
+            customers.put(customer.getEmail(), customer);
             return true;
         }
     }
